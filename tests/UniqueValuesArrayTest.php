@@ -20,4 +20,18 @@ class UniqueValuesArrayTest extends TestCase
 		$list = $list->remove( 'cookies' );
 		$this->assertEquals( [ 'bread', 2, 'cheese' ], $list->getList() );
 	}
+
+	public function testAddList()
+	{
+		$list = new UniqueValuesArray([ 'bread', 2, 'milk', 'bread', 'cheese' ]);
+		$list = $list->addList([ 'cookies', 'bread', 2, 'corn' ]);
+		$this->assertEquals( [ 'bread', 2, 'milk', 'cheese', 'cookies', 'corn' ], $list->getList() );
+	}
+
+	public function testRemoveList()
+	{
+		$list = new UniqueValuesArray([ 'bread', 2, 'milk', 'bread', 'cheese' ]);
+		$list = $list->removeList([ 'cookies', 'bread', 2, 'corn' ]);
+		$this->assertEquals( [ 'milk', 'cheese' ], $list->getList() );
+	}
 }

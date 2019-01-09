@@ -31,6 +31,24 @@ namespace WaughJ\UniqueValuesArray
 			return new UniqueValuesArray( $list );
 		}
 
+		public function addList( array $add_list ) : UniqueValuesArray
+		{
+			return new UniqueValuesArray( array_merge( $this->list, $add_list ) );
+		}
+
+		public function removeList( array $remove_list ) : UniqueValuesArray
+		{
+			$list = [];
+			foreach ( $this->list as $item )
+			{
+				if ( !in_array( $item, $remove_list ) )
+				{
+					$list[] = $item;
+				}
+			}
+			return new UniqueValuesArray( $list );
+		}
+
 		public function getList() : array
 		{
 			return $this->list;
